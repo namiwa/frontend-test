@@ -2,6 +2,16 @@
   /* global color definitions */
   --main-background: #42607B;
   --secondary-background: #00A1D4;
-  --focus-background: #1A2632;
+  --drawer-background: #1A2632;
   --main-font-color: #FFFFFF;
+  
+  color: var(--main-font-color);
+  font-family: "Inter";
+  background-color: var(--main-background);
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("./fonts/Inter/static/Inter-Regular.ttf"), 
+    url("./fonts/Inter/Static/Inter-Regular.ttf") format("truetype");
 }
