@@ -31,20 +31,5 @@ export const Drawer = ({ width, title, open, children }: DrawerProps) => {
         children={children}
     />, [children, title, width, drawerRef])
 
-    // drawer close listener on ourside click
-    useEffect(() => {
-        const clickHandler = (event: MouseEvent) => {
-            const { target } = event
-            const panel = drawerRef.current
-            if (drawerRef.current && target && !drawerRef.current.contains(target as HTMLElement)) {
-                panel?.remove()
-            }
-        }
-        document.addEventListener('click', clickHandler)
-        return () => document.removeEventListener('click', clickHandler)
-    }, [drawerRef])
-
-    return <>
-        {_open && createPortal(<Panel />, document.body, 'drawer-panel')}
-    </>
+    return createPortal(<Panel />, document.body, 'drawer-panel')
 }
