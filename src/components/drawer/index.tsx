@@ -14,7 +14,6 @@ import {
 import { createPortal } from "react-dom"
 
 interface DrawerProps {
-    width: number
     title: string
     open: boolean
     children: ReactNode
@@ -22,30 +21,28 @@ interface DrawerProps {
 }
 
 const DrawerPanel = ({ 
-    drawerRef, 
-    width, 
+    drawerRef,
     title, 
     children,
     onClose
 }: Omit<DrawerProps, 'open'> & {
     drawerRef: MutableRefObject<HTMLDivElement | null>
 }) => <Wrapper>
-    <StyledDrawer $width={width} ref={drawerRef}>
+    <StyledDrawer ref={drawerRef}>
     <DrawerTitle>{title}</DrawerTitle>
     <ChildrenWrapper>{children}</ChildrenWrapper>
 </StyledDrawer>
 <Mask onClick={() => onClose()}/>
 </Wrapper>
 
-export const Drawer = ({ width, title, open, children, onClose }: DrawerProps) => {
+export const Drawer = ({ title, open, children, onClose }: DrawerProps) => {
     const drawerRef = useRef<HTMLDivElement | null>(null)
     const Panel = useCallback(() => <DrawerPanel
         drawerRef={drawerRef}
-        width={width} 
         title={title} 
         children={children}
         onClose={onClose}
-    />, [children, title, width, onClose, drawerRef])
+    />, [children, title, onClose, drawerRef])
 
     return open
         ? createPortal(<Panel />, document.body, 'drawer-panel')

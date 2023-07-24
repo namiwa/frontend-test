@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const StyledDrawer = styled.div<{ $width: number }>`
+export const StyledDrawer = styled.div`
     background: var(--main-background);
     text-align: center;
     font-family: "Inter";
@@ -10,7 +10,6 @@ export const StyledDrawer = styled.div<{ $width: number }>`
     right: 0;
     height: 100%;
     width: 30%;
-    padding: 10px;
     z-index: 1000;
 `
 
