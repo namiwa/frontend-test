@@ -1,6 +1,27 @@
 import { useState } from 'react'
-import { Button, Drawer } from './components'
+import { Button, Card, Drawer } from './components'
 import { MainButtonTitle, MainWrapper } from './styledComponents'
+
+import type { CardProps } from './components'
+
+
+const sampleData: CardProps[] = [
+  {
+    title: "Test 1",
+    open: false,
+    children: "child1"
+  },
+  {
+    title: "Test 2",
+    open: true,
+    children: "child2"
+  },
+  {
+    title: "Test 3",
+    open: false,
+    children: "child3"
+  },
+]
 
 function App() {
   const [open, setOpen] = useState(false)
@@ -17,7 +38,7 @@ function App() {
           open={open} 
           onClose={() => setOpen(false)}
         >
-          drawer children
+          {sampleData.map((val, ind) => <Card {...val} key={ind} />)}
         </Drawer>
     </MainWrapper>
   )
