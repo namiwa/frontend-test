@@ -13,7 +13,7 @@ function App() {
           <MainButtonTitle>Explore web APIs</MainButtonTitle>
         </Button>
         <Drawer 
-          title="Testing title" 
+          title="Select Provider" 
           open={open} 
           onClose={() => setOpen(false)}
         >
