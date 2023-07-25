@@ -46,5 +46,6 @@ export const DrawerTitle = styled.div`
 
 export const ChildrenWrapper = styled.div`
     padding: 10px;
+    max-height: 100%;
     overflow: scroll;
 `
