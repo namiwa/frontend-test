@@ -5,6 +5,7 @@ export const InfoPanelWrapper = styled.span`
     width: 100%;
     display: flex;
     justify-content: start;
+    cursor: pointer;
 `
 
 export const InfoPanelTitle = styled.span`

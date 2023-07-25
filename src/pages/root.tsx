@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button, Card, Drawer, InfoPanel } from '../components'
-import { MainButtonTitle, MainWrapper } from '../styledComponents'
+import { MainButtonTitle, MainWrapper } from './styledComponents'
 
 import type { CardProps } from '../components'
 import { useGetProviders } from '../utils'

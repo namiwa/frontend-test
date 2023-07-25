@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useGetProviderDetails } from "../../utils"
 import { InfoPanelIcon, InfoPanelTitle, InfoPanelWrapper } from "./styledComponents"
 
@@ -7,7 +8,8 @@ interface InfoPanelProps {
 
 export const InfoPanel = (props: InfoPanelProps) => {
     const details = useGetProviderDetails(props.url)
-    return <InfoPanelWrapper>
+    const navigate = useNavigate()
+    return <InfoPanelWrapper onClick={() => navigate(`/${props.url}/`)}>
         <InfoPanelIcon src={details?.info["x-logo"].url} />
         <InfoPanelTitle>{details?.info.title}</InfoPanelTitle>
     </InfoPanelWrapper>
