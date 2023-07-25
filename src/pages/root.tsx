@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Button, Card, Drawer, InfoPanel } from '../components'
 import { MainButtonTitle, MainWrapper } from './styledComponents'
 
@@ -6,7 +7,9 @@ import type { CardProps } from '../components'
 import { useGetProviders } from '../utils'
 
 function Root() {
-  const [open, setOpen] = useState(false)
+  const [searchParams] = useSearchParams()
+  const openParam = searchParams.get('open') === 'true'
+  const [open, setOpen] = useState(openParam)
   const providersUrl = useGetProviders()
   const data: CardProps[] = providersUrl.map((url) => ({
     title: url,
