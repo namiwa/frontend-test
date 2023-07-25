@@ -1,23 +1,32 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
-import OpenIcon from './open.svg'
-import CloseIcon from './close.svg'
-import { CardWrapper } from "./styledComponents";
+import Open from './open.svg'
+import Close from './close.svg'
+import { 
+    CardWrapper, 
+    Title, 
+    TitleWrapper
+} from "./styledComponents";
 
 export interface CardProps {
     title: string
-    open: boolean
+    defaultOpen: boolean
     children: ReactNode
 }
 
-const CardTitle = ({ title, open }: Omit<CardProps, 'children'>) => {
-    const icon = open ? <img src={OpenIcon} /> : <img src={CloseIcon} /> 
-    return <span>{title}{icon}</span>
+const OpenIcon = () => <img src={Open} />
+const CloseIcon = () => <img src={Close} />
+const CardTitle = ({ title, defaultOpen: open }: Omit<CardProps, 'children'>) => {
+    const icon = open ? <OpenIcon /> : <CloseIcon />
+    return <TitleWrapper>
+        <Title>{title}</Title>{icon}
+    </TitleWrapper>
 }
 
-export const Card = ({ title, open, children }: CardProps) => {
-    return <CardWrapper>
-        <CardTitle title={title} open={open} />
-        {children}
+export const Card = ({ title, defaultOpen, children }: CardProps) => {
+    const [open, setOpen] = useState(defaultOpen)
+    return <CardWrapper onClick={() => setOpen((val: boolean) => !val)} >
+        <CardTitle title={title} defaultOpen={open} />
+        {open && children}
     </CardWrapper>
 }

@@ -8,17 +8,17 @@ import type { CardProps } from './components'
 const sampleData: CardProps[] = [
   {
     title: "Test 1",
-    open: false,
+    defaultOpen: false,
     children: "child1"
   },
   {
     title: "Test 2",
-    open: true,
+    defaultOpen: true,
     children: "child2"
   },
   {
     title: "Test 3",
-    open: false,
+    defaultOpen: false,
     children: "child3"
   },
 ]

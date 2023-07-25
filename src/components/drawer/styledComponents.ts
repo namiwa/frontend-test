@@ -32,6 +32,7 @@ export const Mask = styled.div`
     z-index: 999;
     pointer-events: auto;
     pointer: cursor;
+    padding: 0px;
 `
 
 export const DrawerTitle = styled.div`
