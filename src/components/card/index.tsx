@@ -16,17 +16,24 @@ export interface CardProps {
 
 const OpenIcon = () => <img src={Open} />
 const CloseIcon = () => <img src={Close} />
-const CardTitle = ({ title, defaultOpen: open }: Omit<CardProps, 'children'>) => {
+const CardTitle = ({ title, open, onClick }: Omit<CardProps, 'children' | 'defaultOpen'> & {
+    onClick: CallableFunction,
+    open: boolean
+}) => {
     const icon = open ? <OpenIcon /> : <CloseIcon />
-    return <TitleWrapper>
+    return <TitleWrapper onClick={() => onClick()}>
         <Title>{title}</Title>{icon}
     </TitleWrapper>
 }
 
 export const Card = ({ title, defaultOpen, children }: CardProps) => {
     const [open, setOpen] = useState(defaultOpen)
-    return <CardWrapper onClick={() => setOpen((val: boolean) => !val)} >
-        <CardTitle title={title} defaultOpen={open} />
+    return <CardWrapper $open={open}>
+        <CardTitle
+            title={title}
+            open={open}
+            onClick={() => setOpen((val: boolean) => !val)}
+        />
         {open && children}
     </CardWrapper>
 }

@@ -1,17 +1,17 @@
 import { useState } from 'react'
-import { Button, Card, Drawer } from './components'
-import { MainButtonTitle, MainWrapper } from './styledComponents'
+import { Button, Card, Drawer, InfoPanel } from '../components'
+import { MainButtonTitle, MainWrapper } from '../styledComponents'
 
-import type { CardProps } from './components'
-import { useGetProviders } from './utils'
+import type { CardProps } from '../components'
+import { useGetProviders } from '../utils'
 
-function App() {
+function Root() {
   const [open, setOpen] = useState(false)
-  const providers = useGetProviders()
-  const data: CardProps[] = providers.map((val) => ({
-    title: val,
-    defaultOpen: false,
-    children: val
+  const providersUrl = useGetProviders()
+  const data: CardProps[] = providersUrl.map((url) => ({
+    title: url,
+    defaultOpen: url.includes('adobe'),
+    children: <InfoPanel url={url} />
   }))
 
   return (
@@ -32,4 +32,4 @@ function App() {
   )
 }
 
-export default App
+export default Root

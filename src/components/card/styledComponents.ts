@@ -1,13 +1,13 @@
 import { styled } from "styled-components";
 
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.div<{ $open?: boolean }>`
     height: 100%;
     width: 100%;
     display: flex;
     padding: 10px;
     flex-direction: column;
-    cursor: pointer;
+    ${props => props.$open && `background: var(--card-focus-background);`}
 `
 
 export const Title = styled.span`
@@ -23,4 +23,5 @@ export const TitleWrapper = styled.span`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 `

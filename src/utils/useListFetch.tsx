@@ -8,12 +8,12 @@ interface ProvidersResponse {
 export const useGetProviders = () => {
     const [data, setData] = useState<ProvidersResponse['data']>([])
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchListData = async () => {
             const res = await axios.get("https://api.apis.guru/v2/providers.json")
             const data = (res.data as ProvidersResponse).data
             setData(data)
         }
-        fetchData()
+        fetchListData()
     }, [])
 
     return data

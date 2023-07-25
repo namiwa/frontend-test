@@ -2,7 +2,7 @@
   /* global color definitions */
   --main-background: #42607B;
   --secondary-background: #00A1D4;
-  --drawer-background: #1A2632;
+  --card-focus-background: #1A2632;
   --main-font-color: #FFFFFF;
   
   color: var(--main-font-color);
