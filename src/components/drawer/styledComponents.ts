@@ -11,6 +11,7 @@ export const StyledDrawer = styled.div`
     height: 100%;
     width: 40%;
     z-index: 1000;
+    overflow: hidden;
 `
 
 export const Wrapper = styled.div`
@@ -31,7 +32,7 @@ export const Mask = styled.div`
     position: absolute;
     z-index: 999;
     pointer-events: auto;
-    pointer: cursor;
+    cursor: pointer;
     padding: 0px;
 `
 
@@ -45,4 +46,5 @@ export const DrawerTitle = styled.div`
 
 export const ChildrenWrapper = styled.div`
     padding: 10px;
+    overflow: scroll;
 `
