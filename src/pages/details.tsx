@@ -11,7 +11,13 @@ import {
     MainWrapper, 
     SectionLabel, 
     SectionValue,
-    SectionWrapper
+    SectionItemWrapper,
+    SectionWrapper,
+    ButtonWrapper,
+    ContactsWrapper,
+    ContactsValue,
+    ContactsSpanWrapper,
+    ContactsLabel
 } from "./styledComponents"
 import { useGetProviderDetails } from '../utils'
 import { Button } from '../components'
@@ -23,6 +29,38 @@ const Heading = ({ iconUrl, title }: { iconUrl?: string, title?: string }) => {
     </HeadingWrapper>
 }
 
+const LargeSectionItem = ({ title, value }: { title: string, value?: string }) => {
+    return <SectionItemWrapper>
+        <SectionLabel>{title}</SectionLabel>
+        <SectionValue>{value}</SectionValue>
+    </SectionItemWrapper>
+}
+
+const checkInfo = ['email', 'name', 'url']
+const ContactsSection = ({ info }: { info?: {
+    email: string,
+    name: string,
+    url: string
+}}) => {
+    if (!info) return null
+    const data = Object.entries(info)
+    .filter(([key]) => checkInfo.includes(key))
+    .map(([key, value]) => {
+        return <ContactsSpanWrapper>
+            <ContactsLabel>
+            {key[0].toUpperCase() + key.slice(1)}
+            </ContactsLabel>
+            <ContactsValue>{value}</ContactsValue>
+        </ContactsSpanWrapper>
+    })
+
+
+
+    return <ContactsWrapper>
+        {data}
+    </ContactsWrapper>
+}
+
 export const Details = () => {
     const params = useParams()
     const { url } = params
@@ -31,24 +69,24 @@ export const Details = () => {
     const title = details?.info.title
     const description = details?.info.description
     const swagger = details?.swaggerUrl
+    const contactInfo = details?.info.contact
     const navigate = useNavigate()
     return details 
         ? <DetailsWrapper>
             <Heading iconUrl={iconUrl} title={title} />
             <SectionWrapper>
-                <SectionLabel>Description</SectionLabel>
-                <SectionValue>{description}</SectionValue>
+                <LargeSectionItem title='Description' value={description} />
+                <LargeSectionItem title='Swagger' value={swagger} />
+                <SectionItemWrapper>
+                    <SectionLabel>Contact</SectionLabel>
+                    <ContactsSection info={contactInfo}/>
+                </SectionItemWrapper>
+                <ButtonWrapper>
+                    <Button onClick={() => navigate('/?open=true')}>
+                        <ButtonTitle>Explore more APIs</ButtonTitle>
+                    </Button>
+                </ButtonWrapper>
             </SectionWrapper>
-            <SectionWrapper>
-                <SectionLabel>Swagger</SectionLabel>
-                <SectionValue>{swagger}</SectionValue>
-            </SectionWrapper>
-            <SectionWrapper>
-                <SectionLabel>Contact</SectionLabel>
-            </SectionWrapper>
-            <Button onClick={() => navigate('/?open=true')}>
-                <ButtonTitle>Explore more APIs</ButtonTitle>
-            </Button>
         </DetailsWrapper>
         : <MainWrapper>Loading data...</MainWrapper>
 }
